@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="Base::Layout(~{::title}, ~{::body})">
+<!-- <html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="~{ Base::Layout(~{::title}, ~{::body}) }"> -->
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>addTodos</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="container-fluid p-3">
+			<div class="row mt-3">
+
+				<div class="col-md-6 offset-md-3">
+					<div class="card animated-card shadow p-2 mb-0 bg-body rounded">
+
+						<!-- ======= card-body ========= -->
+						<div class="card-body">
+
+							<p class="text-center fs-3">Add a ToDo Item</p>
+
+							<th:block th:if="${session.msg}">
+								<p class="text-center text-success fs-5">[[${session.msg}]]</p>
+
+								<!-- ======= But yo mathi ko message(text) lai remove garna yesto garne ========== -->
+								<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+
+							</th:block>
+
+
+							<form action="/user/todo/add" method="post">
+								
+								<input type="hidden" name="user" th:value="${userId}">
+
+								<div class="mb-3">
+									<label class="form-label">Title</label>
+									<div class="input-group">
+										<input type="text" name="title" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Date</label>
+									<div class="input-group">
+										<input type="date" name="date" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Status</label>
+									<div class="input-group">
+										<input type="text" name="status" value="Incomplete" class="form-control"
+											readonly>
+									</div>
+								</div>
+
+
+								<div class="text-center">
+									<!-- <button class="btn" style="background-color: #2E86C1; color: white;">Add</button> -->
+									<input type="submit" value="Add" class="btn px-4"
+										style="background-color: #2E86C1; color: white;">
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+
+</html>

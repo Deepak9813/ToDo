@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="Base::Layout(~{::title}, ~{::body})">
+<!-- <html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="~{ Base::Layout(~{::title}, ~{::body}) }"> -->
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>editToDoItem</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="container-fluid p-3">
+			<div class="row mt-3">
+
+				<div class="col-md-6 offset-md-3">
+					<div class="card animated-card shadow p-2 mb-0 bg-body rounded">
+
+						<!-- ======= card-body ========= -->
+						<div class="card-body">
+
+							<p class="text-center fs-3">Edit ToDo Item</p>
+
+
+							<form action="/user/todo/update" method="post" th:object="${todoModel}">
+								
+
+								<div class="mb-3">
+									<label class="form-label">Title</label>
+									<div class="input-group">
+										<input type="text" th:field="*{title}" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Date</label>
+									<div class="input-group">
+										<input type="date" th:field="*{date}" class="form-control" required>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Status</label>
+									<div class="input-group">
+										<input type="text" th:field="*{status}" class="form-control"
+											readonly>
+									</div>
+								</div>
+
+
+								<div class="text-center">
+									<!-- <button class="btn" style="background-color: #2E86C1; color: white;">Update</button> -->
+									<input type="submit" value="Update" class="btn px-4"
+										style="background-color: #2E86C1; color: white;">
+								</div>
+								
+								<input type="hidden" th:field="*{user.id}">
+								<input type="hidden" th:field="*{id}">
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+
+</html>
